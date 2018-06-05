@@ -11,26 +11,40 @@
       </md-button>
       <md-menu-content>
         <md-menu-item v-if="!isApplied('provider')" v-on:click="visibleProvider = 'provider'">Provider</md-menu-item>
-        <md-menu-item v-if="!isApplied('createdat')" v-on:click="visibleProvider = 'createdat'">Erstellt am
-        </md-menu-item>
+        <md-menu-item v-if="!isApplied('createdat')" v-on:click="visibleProvider = 'createdat'">Erstellt am</md-menu-item>
+        <md-menu-item v-if="!isApplied('subject')" v-on:click="visibleProvider = 'subject'">Fach</md-menu-item>
+        <md-menu-item v-if="!isApplied('goal')" v-on:click="visibleProvider = 'goal'">Unterrichtsziel</md-menu-item>
+        <md-menu-item v-if="!isApplied('difficulty')" v-on:click="visibleProvider = 'difficulty'">Niveaustufe</md-menu-item>
       </md-menu-content>
     </md-menu>
 
     <provider-filter-dialog @set="setFilter" @cancle="cancle" identifier="provider"
                             v-bind:active="visibleProvider == 'provider'"/>
     <createdat-filter-dialog @set="setFilter" @cancle="cancle" identifier="createdat"
-                             v-bind:active="visibleProvider == 'createdat'"/>
+                            v-bind:active="visibleProvider == 'createdat'"/>
+    <subject-filter-dialog @set="setFilter" @cancle="cancle" identifier="subject"
+                            v-bind:active="visibleProvider == 'subject'"/>
+    <goal-filter-dialog @set="setFilter" @cancle="cancle" identifier="goal"
+                            v-bind:active="visibleProvider == 'goal'"/>
+    <difficulty-filter-dialog @set="setFilter" @cancle="cancle" identifier="difficulty"
+                            v-bind:active="visibleProvider == 'difficulty'"/>
   </div>
 </template>
 
 <script>
   const providerFilterDialog = () => import(/* webpackChunkName: "providerFilterDialog" */ '@/components/dialogs/filter/provider.vue');
   const createdAtFilterDialog = () => import(/* webpackChunkName: "createdAtFilterDialog" */ '@/components/dialogs/filter/date.vue');
+  const subjectFilterDialog = () => import(/* webpackChunkName: "subjectFilterDialog" */ '@/components/dialogs/filter/subject.vue');
+  const goalFilterDialog = () => import(/* webpackChunkName: "goalFilterDialog" */ '@/components/dialogs/filter/goal.vue');
+  const difficultyFilterDialog = () => import(/* webpackChunkName: "difficultyFilterDialog" */ '@/components/dialogs/filter/difficulty.vue');
 
   export default {
     components: {
       'provider-filter-dialog': providerFilterDialog,
       'createdat-filter-dialog': createdAtFilterDialog,
+      'subject-filter-dialog': subjectFilterDialog,
+      'goal-filter-dialog': goalFilterDialog,
+      'difficulty-filter-dialog': difficultyFilterDialog,
     },
     name: 'searchFilter',
     data() {
@@ -41,7 +55,7 @@
     },
     methods: {
       setFilter(identifier, filterData) {
-        this.visibleProvider = '';
+        this.visibleProvider = ''; // TODO ASK WHY
 
         filterData = JSON.parse(JSON.stringify(filterData)); // deep copy
 

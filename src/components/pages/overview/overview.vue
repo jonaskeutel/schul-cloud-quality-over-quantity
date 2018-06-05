@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-welcomeMessage></app-welcomeMessage>
-    <app-search></app-search>
+    <app-search :readOnly="true"></app-search>
   </div>
 </template>
 
