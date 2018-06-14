@@ -19,11 +19,12 @@ module.exports = {
   },
   difficulty: {
     modal_title: 'Niveaustufe',
-    placeholder: 'Niveaustufe wählen'
+    placeholder: 'Niveaustufe wählen',
+    placeholder_type: 'Art wählen'
   },
   age: {
     modal_title: 'Alter',
     placeholder: 'Alter wählen',
-    plusminus: '+/- Jahre'
+    placeholder_range: '+/- Jahre'
   },
 };

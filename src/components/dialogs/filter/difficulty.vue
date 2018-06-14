@@ -3,10 +3,24 @@
     <md-dialog-title>{{$lang.filter.difficulty.modal_title}}</md-dialog-title>
 
     <div id="difficulty-picker">
-        <!-- TODO: Set difficulty depending on subject (language -> A1-C2) -->
+      <md-field>
+        <label for="difficultyType">{{$lang.filter.difficulty.placeholder_type}}</label>
+        <md-select v-model="difficultyType" id="difficultyType" md-dense>
+            <md-option value="Sprachen">Sprachen</md-option>
+            <md-option value="Anderes">Anderes</md-option>
+        </md-select>
+      </md-field>
       <md-field>
         <label for="selectedDifficulty">{{$lang.filter.difficulty.placeholder}}</label>
-        <md-select v-model="selectedDifficulty" id="selectedDifficulty" md-dense> <!-- multiple> -->
+        <md-select v-if="difficultyType === 'Sprachen'" v-model="selectedDifficulty" id="selectedDifficulty" multiple md-dense> <!-- multiple> -->
+          <md-option value="A1">A1</md-option>
+          <md-option value="A2">A2</md-option>
+          <md-option value="B1">B1</md-option>
+          <md-option value="B2">B2</md-option>
+          <md-option value="C1">C1</md-option>
+          <md-option value="C2">C2</md-option>
+        </md-select>
+        <md-select v-if="difficultyType === 'Anderes'" v-model="selectedDifficulty" id="selectedDifficulty" multiple md-dense> <!-- multiple> -->
           <md-option value="Leicht">Leicht</md-option>
           <md-option value="Mittel">Mittel</md-option>
           <md-option value="Schwer">Schwer</md-option>
@@ -28,9 +42,10 @@
     data() {
       return {
         isActive: false,
-        selectedDifficulty: '', // []
+        selectedDifficulty: [], // []
         apiQuery: {},
         urlQuery: {},
+        difficultyType: '',
       };
     },
     created() {
@@ -42,8 +57,8 @@
 
         if (this.selectedDifficulty.length != 0) {
           // this.apiQuery["GoalName[$in]"] = this.selectedDifficulty; // corret but api seems broken
-          this.apiQuery['difficultyName[$match]'] = this.selectedDifficulty;
-          this.urlQuery = {difficulty: this.selectedDifficulty}; // .reduce((prev, curr) => prev +','+ curr )}
+          this.apiQuery['difficultyName[$match]'] = this.selectedDifficulty; //TODO: multiple?
+          this.urlQuery = {difficulty: this.selectedDifficulty}; // .reduce((prev, curr) => prev +','+ curr )} //TODO: multiple?
           displayString = `Niveaustufe: ${this.selectedDifficulty}`; // .reduce((prev, curr) => prev +', '+ curr );
         } else {
           this.apiQuery = {};
@@ -74,6 +89,9 @@
           this.onCancle();
         }
       },
+      difficultyType() {
+          this.selectedDifficulty = [];
+      }
     },
   };
 </script>

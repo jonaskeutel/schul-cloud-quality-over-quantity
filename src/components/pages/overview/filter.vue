@@ -15,6 +15,7 @@
         <md-menu-item v-if="!isApplied('subject')" v-on:click="visibleProvider = 'subject'">Fach</md-menu-item>
         <md-menu-item v-if="!isApplied('goal')" v-on:click="visibleProvider = 'goal'">Unterrichtsziel</md-menu-item>
         <md-menu-item v-if="!isApplied('difficulty')" v-on:click="visibleProvider = 'difficulty'">Niveaustufe</md-menu-item>
+        <md-menu-item v-if="!isApplied('age')" v-on:click="visibleProvider = 'age'">Alter</md-menu-item>
       </md-menu-content>
     </md-menu>
 
@@ -28,6 +29,8 @@
                             v-bind:active="visibleProvider == 'goal'"/>
     <difficulty-filter-dialog @set="setFilter" @cancle="cancle" identifier="difficulty"
                             v-bind:active="visibleProvider == 'difficulty'"/>
+    <age-filter-dialog @set="setFilter" @cancle="cancle" identifier="age"
+                            v-bind:active="visibleProvider == 'age'"/>
   </div>
 </template>
 
@@ -37,6 +40,7 @@
   const subjectFilterDialog = () => import(/* webpackChunkName: "subjectFilterDialog" */ '@/components/dialogs/filter/subject.vue');
   const goalFilterDialog = () => import(/* webpackChunkName: "goalFilterDialog" */ '@/components/dialogs/filter/goal.vue');
   const difficultyFilterDialog = () => import(/* webpackChunkName: "difficultyFilterDialog" */ '@/components/dialogs/filter/difficulty.vue');
+  const ageFilterDialog = () => import(/* webpackChunkName: "difficultyFilterDialog" */ '@/components/dialogs/filter/age.vue');
 
   export default {
     components: {
@@ -45,6 +49,7 @@
       'subject-filter-dialog': subjectFilterDialog,
       'goal-filter-dialog': goalFilterDialog,
       'difficulty-filter-dialog': difficultyFilterDialog,
+      'age-filter-dialog': ageFilterDialog,
     },
     name: 'searchFilter',
     data() {
