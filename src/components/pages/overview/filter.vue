@@ -40,7 +40,7 @@
   const subjectFilterDialog = () => import(/* webpackChunkName: "subjectFilterDialog" */ '@/components/dialogs/filter/subject.vue');
   const goalFilterDialog = () => import(/* webpackChunkName: "goalFilterDialog" */ '@/components/dialogs/filter/goal.vue');
   const difficultyFilterDialog = () => import(/* webpackChunkName: "difficultyFilterDialog" */ '@/components/dialogs/filter/difficulty.vue');
-  const ageFilterDialog = () => import(/* webpackChunkName: "difficultyFilterDialog" */ '@/components/dialogs/filter/age.vue');
+  const ageFilterDialog = () => import(/* webpackChunkName: "ageFilterDialog" */ '@/components/dialogs/filter/age.vue');
 
   export default {
     components: {
@@ -60,7 +60,7 @@
     },
     methods: {
       setFilter(identifier, filterData) {
-        this.visibleProvider = ''; // TODO ASK WHY
+        this.visibleProvider = '';
 
         filterData = JSON.parse(JSON.stringify(filterData)); // deep copy
 

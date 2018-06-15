@@ -11,8 +11,14 @@
             <router-link to="/create">
               <md-button>{{$lang.buttons.create}}</md-button>
             </router-link>
-            <router-link to="/stats">
+            <!-- <router-link to="/stats">
               <md-button>{{$lang.buttons.stats}}</md-button>
+            </router-link> -->
+            <router-link to="/review">
+              <md-button>{{$lang.buttons.review}}</md-button>
+            </router-link>
+            <router-link to="/leaderboard">
+              <md-button>{{$lang.buttons.leaderboard}}</md-button>
             </router-link>
             <md-menu md-direction="bottom-end" :md-align-trigger="true">
               <md-button id="userName" md-menu-trigger>{{userInfo.displayName}}
@@ -20,6 +26,10 @@
               </md-button>
               <md-menu-content>
                 <md-menu-item v-on:click="logout">{{$lang.buttons.logout}}</md-menu-item>
+                <router-link to="/profil">
+                  <md-menu-item>{{$lang.buttons.profil}}</md-menu-item>
+                </router-link>
+
               </md-menu-content>
             </md-menu>
           </div>

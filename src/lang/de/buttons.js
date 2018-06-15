@@ -8,9 +8,13 @@ module.exports = {
   edit: 'bearbeiten',
   list: 'Liste',
   login: 'Anmelden',
+  leaderboard: 'Leaderboard',
   logout: 'Abmelden',
   open: 'öffnen',
+  profil: 'Profil',
+  review: 'Review',
   save: 'speichern',
   search: 'suchen',
   stats: 'Statistik',
+  test: 'Test',
 };
