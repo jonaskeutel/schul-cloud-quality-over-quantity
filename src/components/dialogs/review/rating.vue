@@ -39,8 +39,8 @@
         </template>
         <md-field>
             <label for="ratingReview">{{ $lang.rating[role].placeholder}}</label>
-            <md-input v-model="ratingReview">
-            </md-input>
+            <md-textarea v-model="ratingReview">
+            </md-textarea>
         </md-field>
 
         <md-dialog-actions>

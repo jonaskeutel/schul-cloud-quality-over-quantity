@@ -1,7 +1,7 @@
 <template>
   <div class="profil">
       <h1>Profil</h1>
-      <p>TODO</p>
+      <img src="static/img/badge.jpg" alt="">
   </div>
 </template>
 
@@ -21,4 +21,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+    img {
+        width: 20%;
+    }
 </style>

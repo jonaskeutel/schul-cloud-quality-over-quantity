@@ -1,7 +1,7 @@
 ﻿<template>
   <article>
     <md-card class="card-content height-100">
-      <md-card-header>
+      <!-- <md-card-header>
         <h2 class="md-title">{{data.title||"Titel"}}</h2>
         <div class="md-subhead">
           <div class="tags">
@@ -11,10 +11,11 @@
               </span>
           </div>
         </div>
-      </md-card-header>
+      </md-card-header> -->
 
       <md-card-content>
-          <span v-html="data.content"></span>
+          <!-- <span v-html="data.content"></span> -->
+          <img src="/static/img/edtrio_example.png" alt="">
       </md-card-content>
     </md-card>
   </article>
@@ -58,8 +59,6 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   .card-content {
-    width: 80%;
-    margin: 0 10%;
     padding-bottom: 52px;
     word-break: break-all;
     word-break: break-word;

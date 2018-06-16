@@ -1,27 +1,51 @@
 ﻿<template>
-  <article>
-    <md-card class="card-content height-100">
-      <md-card-header>
-        <h3 class="md-title">Bewertung</h3>
-      </md-card-header>
+       <md-card class="content">
+          <md-card-content>
+              <div>
+                  <span class="label">Text</span>
+                  <span class="stars">
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                  </span>
+              </div>
+              <div>
+                  <span class="label">Layout</span>
+                  <span class="stars">
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                  </span>
+              </div>
+              <div>
+                  <span class="label">Insgesamt</span>
+                  <span class="stars">
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                      <md-icon>star_border</md-icon>
+                  </span>
+              </div>
+              <div>
+                  <md-field>
+                      <label for="reviewTextare" class="label">Begründung</label>
+                      <md-textarea id="reviewTextare" v-model="ratingReview">
+                      </md-textarea>
+                  </md-field>
+              </div>
+          </md-card-content>
 
       <md-card-actions>
-        <md-button v-on:click="visibleDialog = 'accept'">Akzeptieren</md-button>
-        <md-button v-on:click="visibleDialog = 'reject'" class="md-primary">Ablehnen</md-button>
-        <md-button v-on:click="visibleDialog = 'proposal'" class="md-accent">Änderungen vorschlagen</md-button>
+          <md-button v-on:click="sendReview('accept')">Akzeptieren</md-button>
+          <md-button v-on:click="sendReview('reject')" class="md-primary">Ablehnen</md-button>
+          <md-button v-on:click="sendReview('proposal')" class="md-accent">Änderungen vorschlagen</md-button>
       </md-card-actions>
-      <rate-review-dialog @accept="acceptReview" @cancle="cancle" identifier="accept"
-                              v-bind:active="visibleDialog == 'accept'"
-                              role="accept"/>
-      <rate-review-dialog @accept="rejectReview" @cancle="cancle" identifier="reject"
-                              v-bind:active="visibleDialog == 'reject'"
-                              role="reject"/>
-      <rate-review-dialog @accept="proposeChanges" @cancle="cancle" identifier="proposal"
-                              v-bind:active="visibleDialog == 'proposal'"
-                              role="propose"
-                              proposal="true" />
-    </md-card>
-  </article>
+  </md-card>
 </template>
 
 <script>
@@ -29,39 +53,17 @@
 
   export default {
     components: {
-        'rate-review-dialog': rateReview,
     },
     props: ['data'],
     name: 'rating',
     data() {
       return {
-        visibleDialog: '',
+        ratingReview: '',
       };
     },
     methods: {
-      onConfirm() {
-        window.open(this.$config.API.baseUrl + this.$config.API.redirectPath + this.data._id, '_blank');
-      },
-      acceptReview(identifier, data) {
-        this.visibleDialog = '';
-
-        // TODO: Do something with text
-        console.log("Accept: ", data.ratingReview);
-      },
-      rejectReview(identifier, data) {
-        this.visibleDialog = '';
-
-        // TODO: Do something with text
-        console.log("Reject: ", data.ratingReview);
-      },
-      proposeChanges(identifier, data) {
-        this.visibleDialog = '';
-
-        // TODO: Do something with text
-        console.log("Proposed changes: ", data.ratingReview);
-      },
-      cancle() {
-        this.visibleDialog = '';
+      sendReview(type) {
+          this.$emit('review', type, {review: this.ratingReview, text: 5, layout: 3, overall: 4});
       },
     },
   };
@@ -69,34 +71,16 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .card-content {
-    width: 80%;
-    margin: 0 10%;
-    padding-bottom: 52px;
-    word-break: break-all;
-    word-break: break-word;
-    overflow: hidden;
-    .md-subhead {
-      .md-icon {
-        $size: 16px;
-
-        width: $size;
-        min-width: $size;
-        height: $size;
-        min-height: $size;
-        font-size: $size;
-        line-height: $size;
-      }
-
-      span {
-        vertical-align: middle;
-      }
-    }
-    .md-card-actions {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
+  .content {
+      padding: 2em 3em;
   }
+  .content div {
+      padding: 5px 0;
+  }
+  .label {
+      display: inline-block;
+      width: 12em;
+      height: 100%;
+  }
+
 </style>
