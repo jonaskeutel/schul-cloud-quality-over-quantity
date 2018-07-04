@@ -227,13 +227,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-  .date-picker {
-    display: inline-flex;
-  }
-
-  .clear-date-picker {
-    margin-top: 7px;
-  }
 
   .items-per-page-picker {
     margin-left: 7px;

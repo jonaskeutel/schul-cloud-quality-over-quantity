@@ -45,7 +45,7 @@
     data() {
       return {
         isActive: false,
-        selectedSubjects: '', // []
+        selectedSubjects: [],
         apiQuery: {},
         urlQuery: {},
       };
@@ -71,6 +71,7 @@
           apiQuery: this.apiQuery,
           urlQuery: this.urlQuery,
           displayString,
+          selection: this.selectedSubjects,
         });
       },
       onCancle() {
@@ -78,7 +79,7 @@
       },
       resetSubjects(key) {
         if (key == this.identifier) {
-          this.selectedSubjects = '';
+          this.selectedSubjects = [];
         }
       },
     },

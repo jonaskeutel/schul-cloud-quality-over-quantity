@@ -9,7 +9,7 @@
   export default {
     components: {
     },
-    name: 'review',
+    name: 'profil',
     data() {
       return {
       };

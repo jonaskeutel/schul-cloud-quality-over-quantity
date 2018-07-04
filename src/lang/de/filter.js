@@ -13,6 +13,10 @@ module.exports = {
     modal_title: 'Unterrichtsfach',
     placeholder: 'Unterrichtsfach wählen'
   },
+  topic: {
+    modal_title: 'Thema',
+    placeholder: 'Thema wählen'
+  },
   goal: {
     modal_title: 'Unterrichtsziel',
     placeholder: 'Unterrichtsziel wählen'

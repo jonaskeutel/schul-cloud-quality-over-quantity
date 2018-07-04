@@ -3,7 +3,7 @@
       <content-element class="card" v-bind:data="data"></content-element>
       <transition name="fadeUp">
           <rating-element v-if="showRating" class="card" @review="reviewReveived"></rating-element>
-          <categories-element v-else class="card" v-bind:data="data"></categories-element>
+          <categories-element v-else class="card" @categories-accepted="accepted" :data="data" :review="review"></categories-element>
       </transition>
 
       <!-- <md-card class="card">
@@ -33,17 +33,14 @@
     data() {
       return {
         data: {
-          providerName: 'HPI Schul-Cloud (Autorenname TODO)',
-          url: 'Entfällt',
-          title: 'Titel für Testinhalt - Sieht es gut aus?',
-          description: 'Test',
-          content: '<h4>Bla</h4><p>Lorem ipsum dolor sit amet</p>',
-          thumbnail: 'Entfällt',
-          contentCategory: 'Test',
-          licenses: ['Entfällt'],
-          tags: ['Test1','Test2','Test3'],
+          topics: ['Todo'],
+          age: "8 +- 1",
+          subjects: ["Deutsch", "Englisch", "Geschichte"],
+          difficulty: ["A2", "B1"],
+          goal: ["Einführung"],
         },
         showRating: true,
+        review: true,
       };
     },
     methods: {
@@ -51,6 +48,9 @@
             console.log(type);
             console.log(data);
             this.showRating = false;
+        },
+        accepted() {
+            alert("TODO: Punkte verleihen, Bewertung speichern")
         }
     },
   };
